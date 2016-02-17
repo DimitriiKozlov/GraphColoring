@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AILab1"
         mc:Ignorable="d"
         Title="Graph Coloring" Height="350" Width="525" WindowStartupLocation="CenterScreen" Icon="hexa.ico">
-    <Grid Margin="0,24,0,0">
+    <Grid Margin="0,24,0,-12">
         <Rectangle Height="106" Margin="0" Stroke="Black" VerticalAlignment="Top">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
