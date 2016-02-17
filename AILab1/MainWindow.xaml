@@ -1,0 +1,59 @@
+﻿<Window x:Class="AILab1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AILab1"
+        mc:Ignorable="d"
+        Title="Graph Coloring" Height="350" Width="525" WindowStartupLocation="CenterScreen" Icon="hexa.ico">
+    <Grid Margin="0,24,0,0">
+        <Rectangle Height="106" Margin="0" Stroke="Black" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD1FF00" Offset="0.683"/>
+                    <GradientStop Color="#FFCDC407" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button x:Name="BOpen" Content="Open" HorizontalAlignment="Left" Margin="0,-22,0,0" VerticalAlignment="Top" Width="75" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="White" BorderBrush="Black">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF14B603" Offset="1"/>
+                    <GradientStop Color="#FF17FF00"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="BClose" Content="Close" Margin="0,-22,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="White" BorderBrush="Black">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF870000" Offset="1"/>
+                    <GradientStop Color="Red"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="BAnt" Content="ANT" Margin="80,-22,80,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Segoe UI Black" Foreground="White" BorderBrush="Black">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF1A0091" Offset="1"/>
+                    <GradientStop Color="#FF2600CF"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label x:Name="LFileNameText" Content="File Name:" HorizontalAlignment="Left" Margin="6,-2,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" FontWeight="Bold"/>
+        <Label x:Name="LFileNameText1" Content="*" HorizontalAlignment="Left" Margin="72,-2,0,0" VerticalAlignment="Top" Width="123" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="LVertexText" Content="Vertex:" HorizontalAlignment="Left" Margin="6,24,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
+        <Label x:Name="LVertex" Content="*" HorizontalAlignment="Left" Margin="72,24,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
+        <Label x:Name="LEdgesText" Content="Edges:" HorizontalAlignment="Left" Margin="6,50,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
+        <Label x:Name="LEdges" Content="*" HorizontalAlignment="Left" Margin="72,50,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
+        <TextBox x:Name="textBox" Height="104" Margin="0,1,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="307" FontWeight="Bold">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0.476"/>
+                    <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <Label x:Name="LColorsText" Content="Colors:" HorizontalAlignment="Left" Margin="6,76,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
+        <Label x:Name="LColors" Content="*" HorizontalAlignment="Left" Margin="72,76,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
+    </Grid>
+</Window>
