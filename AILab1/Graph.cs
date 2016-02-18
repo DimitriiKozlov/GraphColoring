@@ -5,17 +5,19 @@ namespace AILab1
     class Graph
     {
         private readonly bool[,] _matrix;
-        private readonly int _nVertex;
-        private int _nEdge;
-        //public int[] VertexColor;
+        public readonly int NVertex;
+        public readonly int NEdge;
+        public int[] VertexColor;
+        public int NColor;
 
 
         public Graph(int nV, int nE)
         {
-            _nEdge = nE;
-            _nVertex = nV;
-            _matrix = new bool[_nVertex, _nVertex];
-            //VertexColor = new int[_nVertex];
+            NEdge = nE;
+            NVertex = nV;
+            _matrix = new bool[NVertex, NVertex];
+            VertexColor = new int[NVertex];
+            NColor = NEdge - NVertex + 1;
         }
 
         public void SetData(string source)
