@@ -16,8 +16,13 @@ namespace AILab1
             NEdge = nE;
             NVertex = nV;
             _matrix = new bool[NVertex, NVertex];
+
             VertexColor = new int[NVertex];
             NColor = NEdge - NVertex + 1;
+
+            var rand = new Random();
+            for (var i = 0; i < VertexColor.Length; i++)
+                VertexColor[i] = rand.Next(NColor);
         }
 
         public void SetData(string source)
