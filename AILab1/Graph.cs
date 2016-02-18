@@ -4,8 +4,8 @@ namespace AILab1
 {
     class Graph
     {
-        private bool[,] _matrix;
-        private int _nVertex;
+        private readonly bool[,] _matrix;
+        private readonly int _nVertex;
         private int _nEdge;
         //public int[] VertexColor;
 
@@ -18,7 +18,7 @@ namespace AILab1
             //VertexColor = new int[_nVertex];
         }
 
-        public void setData(string source)
+        public void SetData(string source)
         {
             var words = source.Split();
 
