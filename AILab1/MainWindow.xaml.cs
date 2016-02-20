@@ -26,11 +26,14 @@ namespace AILab1
 
             var fileName = file.FileName;
 
-            System.IO.StreamReader sr = new System.IO.StreamReader(fileName);
-
-            
-
+            var sr = new System.IO.StreamReader(fileName);
+            var fileContent = sr.ReadToEnd();
             sr.Close();
+
+
+            LFileName.Content = fileName;
+
+
         }
     }
 }

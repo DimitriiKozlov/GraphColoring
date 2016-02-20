@@ -40,7 +40,7 @@
             </Button.Background>
         </Button>
         <Label x:Name="LFileNameText" Content="File Name:" HorizontalAlignment="Left" Margin="6,-2,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" FontWeight="Bold"/>
-        <Label x:Name="LFileNameText1" Content="*" HorizontalAlignment="Left" Margin="72,-2,0,0" VerticalAlignment="Top" Width="123" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="LFileName" Content="*" HorizontalAlignment="Left" Margin="72,-2,0,0" VerticalAlignment="Top" Width="123" VerticalContentAlignment="Center" FontWeight="Bold"/>
         <Label x:Name="LVertexText" Content="Vertex:" HorizontalAlignment="Left" Margin="6,24,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
         <Label x:Name="LVertex" Content="*" HorizontalAlignment="Left" Margin="72,24,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
         <Label x:Name="LEdgesText" Content="Edges:" HorizontalAlignment="Left" Margin="6,50,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
