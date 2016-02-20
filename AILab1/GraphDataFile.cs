@@ -22,7 +22,7 @@ namespace AILab1
             
             do
             {
-                Comment += s.Remove(0, 1);
+                Comment += s.Remove(0, 1) + '\n';
                 s = source.ReadLine();
             } while (s[0] == 'c');
 

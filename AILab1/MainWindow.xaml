@@ -40,11 +40,11 @@
             </Button.Background>
         </Button>
         <Label x:Name="LFileNameText" Content="File Name:" HorizontalAlignment="Left" Margin="6,-2,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" FontWeight="Bold"/>
-        <Label x:Name="LFileName" Content="*" HorizontalAlignment="Left" Margin="72,-2,0,0" VerticalAlignment="Top" Width="123" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="LFileName" Content="*" HorizontalAlignment="Left" Margin="72,-2,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" FontWeight="Bold"/>
         <Label x:Name="LVertexText" Content="Vertex:" HorizontalAlignment="Left" Margin="6,24,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
-        <Label x:Name="LVertex" Content="*" HorizontalAlignment="Left" Margin="72,24,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
+        <Label x:Name="LVertex" Content="*" HorizontalAlignment="Left" Margin="72,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="LEdgesText" Content="Edges:" HorizontalAlignment="Left" Margin="6,50,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
-        <Label x:Name="LEdges" Content="*" HorizontalAlignment="Left" Margin="72,50,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
+        <Label x:Name="LEdges" Content="*" HorizontalAlignment="Left" Margin="72,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="TBFileInfo" Height="104" Margin="0,1,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="307" FontWeight="Bold">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -54,6 +54,6 @@
             </TextBox.Background>
         </TextBox>
         <Label x:Name="LColorsText" Content="Colors:" HorizontalAlignment="Left" Margin="6,76,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Right" FontWeight="Bold"/>
-        <Label x:Name="LColors" Content="*" HorizontalAlignment="Left" Margin="72,76,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
+        <Label x:Name="LColors" Content="*" HorizontalAlignment="Left" Margin="72,76,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
     </Grid>
 </Window>

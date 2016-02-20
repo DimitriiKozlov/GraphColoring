@@ -24,10 +24,13 @@ namespace AILab1
             if (file.ShowDialog() == false)
                 return;
 
-            var fileName = file.FileName;
+            var f = new GraphDataFile(new StreamReader(file.FileName));
 
-            var f = new GraphDataFile(new StreamReader(fileName));
-
+            LFileName.Content = f.Name;
+            LColors.Content = f.NColors;
+            LEdges.Content = f.NEdge;
+            LVertex.Content = f.NVertex;
+            TBFileInfo.Text = f.Comment;
 
         }
     }
