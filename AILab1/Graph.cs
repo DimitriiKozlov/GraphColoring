@@ -1,31 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AILab1
 {
     class Graph
     {
         private readonly bool[,] _matrix;
-        public readonly int NVertex;
-        public readonly int NEdge;
+        private readonly int _nVertex;
+        private readonly int _nEdge;
+        private readonly int _nColor;
+        private int[] _vertexConflict;
         public int[] VertexColor;
-        public int NColor;
 
 
-        public Graph(int nV, int nE, int nC)
+        public Graph(GraphDataFile gdf)
         {
-            NEdge = nE;
-            NVertex = nV;
-            NColor = nC;
-            _matrix = new bool[NVertex, NVertex];
+            _nEdge = gdf.NEdge;
+            _nVertex = gdf.NVertex;
+            _nColor = gdf.NColors;
+            _matrix = new bool[_nVertex, _nVertex];
 
-            VertexColor = new int[NVertex];
+            VertexColor = new int[_nVertex];
+            _vertexConflict = new int[_nVertex];
 
             var rand = new Random();
             for (var i = 0; i < VertexColor.Length; i++)
-                VertexColor[i] = rand.Next(NColor);
+                VertexColor[i] = rand.Next(_nColor);
+
+            SetData(gdf.EdgeSource);
+
+            for (var i = 0; i < _nVertex; i++)
+                updateConflict(i);
+
         }
 
-        public void SetData(string source)
+        private void SetData(string source)
         {
             var words = source.Split();
 
@@ -38,6 +47,26 @@ namespace AILab1
                 _matrix[n, m] = _matrix[m, n] = true;
                 i++;
             }
+        }
+
+        private List<int> get_Vertex(int id)
+        {
+            var res = new List<int>();
+
+            for (var i = 0; i < _nVertex; i++)
+                if (_matrix[id, i])
+                    res.Add(i);
+
+            return res;
+        }
+
+        private void updateConflict(int id)
+        {
+            var _ = get_Vertex(id);
+            _vertexConflict[id] = 0;
+            for (var i = 0; i < _.Count; i++)
+                if (VertexColor[i] == VertexColor[id])
+                    _vertexConflict[id]++;
         }
 
 
