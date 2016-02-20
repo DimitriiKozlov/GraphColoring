@@ -26,12 +26,7 @@ namespace AILab1
 
             var fileName = file.FileName;
 
-            var sr = new System.IO.StreamReader(fileName);
-            var fileContent = sr.ReadToEnd();
-            sr.Close();
-
-
-            LFileName.Content = fileName;
+            var f = new GraphDataFile(new StreamReader(fileName));
 
 
         }

@@ -12,7 +12,7 @@ namespace AILab1
         public string Comment;
         public string EdgeSource;
 
-        GraphDataFile(TextReader source)
+        public GraphDataFile(TextReader source)
         {
             var s = source.ReadLine();
 
