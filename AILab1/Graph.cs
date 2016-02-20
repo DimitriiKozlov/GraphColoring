@@ -11,14 +11,14 @@ namespace AILab1
         public int NColor;
 
 
-        public Graph(int nV, int nE)
+        public Graph(int nV, int nE, int nC)
         {
             NEdge = nE;
             NVertex = nV;
+            NColor = nC;
             _matrix = new bool[NVertex, NVertex];
 
             VertexColor = new int[NVertex];
-            NColor = NEdge - NVertex + 1;
 
             var rand = new Random();
             for (var i = 0; i < VertexColor.Length; i++)
