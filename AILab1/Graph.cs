@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AILab1
 {
     class Graph
     {
+        private const double M = 1;
+        private const double Pc = 1;
+
         private readonly bool[,] _matrix;
         private readonly int _nVertex;
         private readonly int _nEdge;
@@ -49,7 +53,7 @@ namespace AILab1
             }
         }
 
-        private List<int> get_Vertex(int id)
+        private List<int> getAdjacentVertex(int id)
         {
             var res = new List<int>();
 
@@ -62,14 +66,56 @@ namespace AILab1
 
         private void updateConflict(int id)
         {
-            var _ = get_Vertex(id);
+            var aList = getAdjacentVertex(id);
             _vertexConflict[id] = 0;
-            for (var i = 0; i < _.Count; i++)
+            for (var i = 0; i < aList.Count; i++)
                 if (VertexColor[i] == VertexColor[id])
                     _vertexConflict[id]++;
         }
 
+        public void Ants(int nAnts)
+        {
+            
+        }
 
+        private int ant(int id)
+        {
+            var iMaxConflict = 0;
+            var totalConflict = 0;
+
+            var aList = getAdjacentVertex(id);
+            var adjacentColor = new int[_nColor];
+
+            foreach (var i in aList)
+            {
+                var iConf = _vertexConflict[i];
+
+                totalConflict += iConf;
+                if (_vertexConflict[iMaxConflict] < iConf)
+                    iMaxConflict = i;
+
+                adjacentColor[VertexColor[i]]++;
+            }
+            
+            var rand = new Random();
+
+            if (rand.Next(100) <= Pc*100)
+            {
+                var iMin = 0;
+                for (var i = 1; i < adjacentColor.Length; i++)
+                    if (adjacentColor[iMin] > adjacentColor[i])
+                        iMin = i;
+                VertexColor[id] = iMin;
+            }
+            else
+                VertexColor[id] = rand.Next(_nColor);
+
+            updateConflict(id);
+            foreach (var i in aList)
+                updateConflict(i);
+
+            return rand.Next(totalConflict) <= M*iMaxConflict ? iMaxConflict : _vertexConflict[aList[rand.Next(aList.Count)]];
+        }
 
         
     }
