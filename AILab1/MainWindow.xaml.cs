@@ -7,8 +7,10 @@ namespace AILab1
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
+        private Graph _graph;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,11 +34,17 @@ namespace AILab1
             LVertex.Content = f.NVertex;
             TBFileInfo.Text = f.Comment;
 
+            _graph = new Graph(f);
         }
 
         private void BClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
+        }
+
+        private void BAnt_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(_graph.Ants(20).ToString());
         }
     }
 }

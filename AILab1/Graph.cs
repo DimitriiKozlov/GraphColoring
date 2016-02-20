@@ -34,7 +34,7 @@ namespace AILab1
             SetData(gdf.EdgeSource);
 
             for (var i = 0; i < _nVertex; i++)
-                updateConflict(i);
+                UpdateConflict(i);
 
         }
 
@@ -44,16 +44,16 @@ namespace AILab1
 
             for (int i = 0; i < words.Length; i++)
             {
-                if (words[i] == "e")
+                if ((words[i] == "e") || (words[i] == ""))
                     continue;
-                var n = Convert.ToInt32(words[i]);
-                var m = Convert.ToInt32(words[i + 1]);
+                var n = Convert.ToInt32(words[i]) - 1;
+                var m = Convert.ToInt32(words[i + 1]) - 1;
                 _matrix[n, m] = _matrix[m, n] = true;
                 i++;
             }
         }
 
-        private List<int> getAdjacentVertex(int id)
+        private List<int> GetAdjacentVertex(int id)
         {
             var res = new List<int>();
 
@@ -64,16 +64,16 @@ namespace AILab1
             return res;
         }
 
-        private void updateConflict(int id)
+        private void UpdateConflict(int id)
         {
-            var aList = getAdjacentVertex(id);
+            var aList = GetAdjacentVertex(id);
             _vertexConflict[id] = 0;
             for (var i = 0; i < aList.Count; i++)
-                if (VertexColor[i] == VertexColor[id])
+                if (VertexColor[aList[i]] == VertexColor[id])
                     _vertexConflict[id]++;
         }
 
-        public void Ants(int nAnts)
+        public int Ants(int nAnts)
         {
             var ants = new int[nAnts];
             var iter = 0;
@@ -86,9 +86,10 @@ namespace AILab1
             {
                 iter++;
                 for (var i = 0; i < ants.Length; i++)
-                    ants[i] = ant(ants[i]);
+                    ants[i] = Ant(ants[i]);
             }
 
+            return iter;
         }
 
         private bool Complited()
@@ -97,12 +98,12 @@ namespace AILab1
         }
 
 
-        private int ant(int id)
+        private int Ant(int id)
         {
-            var iMaxConflict = 0;
             var totalConflict = 0;
 
-            var aList = getAdjacentVertex(id);
+            var aList = GetAdjacentVertex(id);
+            var iMaxConflict = aList[0];
             var adjacentColor = new int[_nColor];
 
             foreach (var i in aList)
@@ -129,9 +130,9 @@ namespace AILab1
             else
                 VertexColor[id] = rand.Next(_nColor);
 
-            updateConflict(id);
+            UpdateConflict(id);
             foreach (var i in aList)
-                updateConflict(i);
+                UpdateConflict(i);
 
             return rand.Next(totalConflict) <= M*iMaxConflict ? iMaxConflict : _vertexConflict[aList[rand.Next(aList.Count)]];
         }
