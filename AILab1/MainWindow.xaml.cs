@@ -33,5 +33,10 @@ namespace AILab1
             TBFileInfo.Text = f.Comment;
 
         }
+
+        private void BClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
