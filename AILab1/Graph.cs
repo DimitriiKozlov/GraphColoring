@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 
 namespace AILab1
 {
     class Graph
     {
-        private const double M = 1;
+        private const double M = 0.8;
         private const double Pc = 1;
 
         private readonly bool[,] _matrix;
-        private readonly int _nVertex;
+        public readonly int NVertex;
         private readonly int _nEdge;
         private readonly int _nColor;
-        private int[] _vertexConflict;
+        private readonly int[] _vertexConflict;
         public int[] VertexColor;
 
 
         public Graph(GraphDataFile gdf)
         {
             _nEdge = gdf.NEdge;
-            _nVertex = gdf.NVertex;
+            NVertex = gdf.NVertex;
             _nColor = gdf.NColors;
-            _matrix = new bool[_nVertex, _nVertex];
+            _matrix = new bool[NVertex, NVertex];
 
-            VertexColor = new int[_nVertex];
-            _vertexConflict = new int[_nVertex];
+            VertexColor = new int[NVertex];
+            _vertexConflict = new int[NVertex];
 
             var rand = new Random();
             for (var i = 0; i < VertexColor.Length; i++)
@@ -33,7 +34,7 @@ namespace AILab1
 
             SetData(gdf.EdgeSource);
 
-            for (var i = 0; i < _nVertex; i++)
+            for (var i = 0; i < NVertex; i++)
                 UpdateConflict(i);
 
         }
@@ -57,7 +58,7 @@ namespace AILab1
         {
             var res = new List<int>();
 
-            for (var i = 0; i < _nVertex; i++)
+            for (var i = 0; i < NVertex; i++)
                 if (_matrix[id, i])
                     res.Add(i);
 
@@ -80,13 +81,23 @@ namespace AILab1
             var rand = new Random();
 
             for (var i = 0; i < nAnts; i++)
-                ants[i] = rand.Next(_nVertex);
+                ants[i] = rand.Next(NVertex);
 
             while (!Complited())
             {
                 iter++;
+
+                var conflict = _vertexConflict.Sum();
+
+           //     MessageBox.Show(iter.ToString() + ", " + _vertexConflict.Sum().ToString());
                 for (var i = 0; i < ants.Length; i++)
-                    ants[i] = Ant(ants[i]);
+                {
+                    var t = Ant(ants[i]);
+                    if (ants[i] != t)
+                        ants[i] = t;
+                    else
+                        ants[i] = rand.Next(NVertex);
+                }
             }
 
             return iter;
@@ -134,7 +145,7 @@ namespace AILab1
             foreach (var i in aList)
                 UpdateConflict(i);
 
-            return rand.Next(totalConflict) <= M*iMaxConflict ? iMaxConflict : _vertexConflict[aList[rand.Next(aList.Count)]];
+            return rand.Next(totalConflict) < M * _vertexConflict[iMaxConflict] ? iMaxConflict : _vertexConflict[aList[rand.Next(aList.Count)]];
         }
 
         

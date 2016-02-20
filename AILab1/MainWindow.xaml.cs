@@ -44,7 +44,7 @@ namespace AILab1
 
         private void BAnt_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(_graph.Ants(20).ToString());
+            MessageBox.Show(_graph.Ants(_graph.NVertex / 4).ToString());
         }
     }
 }
