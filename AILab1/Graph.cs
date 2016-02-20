@@ -75,8 +75,27 @@ namespace AILab1
 
         public void Ants(int nAnts)
         {
-            
+            var ants = new int[nAnts];
+            var iter = 0;
+            var rand = new Random();
+
+            for (var i = 0; i < nAnts; i++)
+                ants[i] = rand.Next(_nVertex);
+
+            while (!Complited())
+            {
+                iter++;
+                for (var i = 0; i < ants.Length; i++)
+                    ants[i] = ant(ants[i]);
+            }
+
         }
+
+        private bool Complited()
+        {
+            return _vertexConflict.All(i => i <= 0);
+        }
+
 
         private int ant(int id)
         {
