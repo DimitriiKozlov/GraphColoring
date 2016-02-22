@@ -26,7 +26,7 @@ namespace AILab1
             if (file.ShowDialog() == false)
                 return;
 
-            var f = new GraphDataFile(new StreamReader(file.FileName));
+            var f = new GraphDataFile(new StreamReader(file.FileName), file.FileName);
 
             LFileName.Content = f.Name;
             LColors.Content = f.NColors;
