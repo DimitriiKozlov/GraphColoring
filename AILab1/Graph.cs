@@ -8,7 +8,7 @@ namespace AILab1
     class Graph
     {
         private const double M = 1;
-        private const double Pc = 1;
+        private const double Pc = 0.7;
 
         private readonly bool[,] _matrix;
         public readonly int NVertex;
@@ -86,23 +86,26 @@ namespace AILab1
             while (_vertexConflict.Sum() > 0)
             {
                 iter++;
-                if (iter > 9000)
+                if (iter > 99000)
                 {
-                    MessageBox.Show("Over 9000");
-                    return 9000;
+                    MessageBox.Show("Over 99000");
+                    //return 90000;
                 }
-                var fail = false;
-                foreach (var ant in ants)
-                    if ((_vertexConflict[ant] == 0) && (iter > 100))
-                    {
-                        fail = true;
-                        break;
-                    }
+                //var fail = false;
+                //foreach (var ant in ants)
+                //    if ((_vertexConflict[ant] == 0) && (iter > 100))
+                //    {
+                //        fail = true;
+                //        break;
+                //    }
 
-           //     MessageBox.Show(iter.ToString() + ", " + _vertexConflict.Sum().ToString());
+                //     MessageBox.Show(iter.ToString() + ", " + _vertexConflict.Sum().ToString());
                 for (var i = 0; i < ants.Length; i++)
                 {
-                    var t = Ant(ants[i]);
+                    var t = rand.Next(NVertex);
+                    if (_vertexConflict[ants[i]] > 0)
+                        t = Ant(ants[i]);
+                        
                     if (_vertexConflict[t] > 0)
                         ants[i] = t;
                     else
@@ -146,10 +149,20 @@ namespace AILab1
             if (rand.Next(100) <= Pc*100)
             {
                 var iMin = 0;
+                var lMin = new List<int>(1) {iMin};
                 for (var i = 1; i < adjacentColor.Length; i++)
                     if (adjacentColor[iMin] > adjacentColor[i])
+                    {
                         iMin = i;
-                VertexColor[id] = iMin;
+                        lMin = new List<int>(1) {iMin};
+                    }
+                    else
+                        if (adjacentColor[iMin] == adjacentColor[i])
+                            lMin.Add(i);
+                if ((lMin.Count == 1) && (lMin[0] == VertexColor[id]))
+                    VertexColor[id] = rand.Next(_nColor);
+                else
+                    VertexColor[id] = lMin[rand.Next(lMin.Count)];
             }
             else
                 VertexColor[id] = rand.Next(_nColor);

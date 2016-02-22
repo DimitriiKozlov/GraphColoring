@@ -17,7 +17,7 @@ namespace AILab1
             var s = source.ReadLine();
 
             Comment = "";
-            Name = fileName.Remove(0, fileName.IndexOf(':') + 2);
+            Name = fileName;
             NColors = Convert.ToInt32(fileName.Split('.')[1]);
             do
             {
