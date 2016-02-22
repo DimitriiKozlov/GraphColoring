@@ -7,7 +7,7 @@ namespace AILab1
 {
     class Graph
     {
-        private const double M = 0.8;
+        private const double M = 1;
         private const double Pc = 1;
 
         private readonly bool[,] _matrix;
@@ -83,29 +83,42 @@ namespace AILab1
             for (var i = 0; i < nAnts; i++)
                 ants[i] = rand.Next(NVertex);
 
-            while (!Complited())
+            while (_vertexConflict.Sum() > 0)
             {
                 iter++;
-
-                var conflict = _vertexConflict.Sum();
+                if (iter > 9000)
+                {
+                    MessageBox.Show("Over 9000");
+                    return 9000;
+                }
+                var fail = false;
+                foreach (var ant in ants)
+                    if ((_vertexConflict[ant] == 0) && (iter > 100))
+                    {
+                        fail = true;
+                        break;
+                    }
 
            //     MessageBox.Show(iter.ToString() + ", " + _vertexConflict.Sum().ToString());
                 for (var i = 0; i < ants.Length; i++)
                 {
                     var t = Ant(ants[i]);
-                    if (ants[i] != t)
+                    if (_vertexConflict[t] > 0)
                         ants[i] = t;
                     else
-                        ants[i] = rand.Next(NVertex);
+                    {
+                        var lst = new List<int>();
+                        for (int j = 0; j < _vertexConflict.Length; j++)
+                            if (_vertexConflict[j] > 0)
+                                lst.Add(j);
+                        if (lst.Count == 0)
+                            return iter;
+                        ants[i] = lst[rand.Next(lst.Count)];
+                    }
                 }
             }
 
             return iter;
-        }
-
-        private bool Complited()
-        {
-            return _vertexConflict.All(i => i <= 0);
         }
 
 
@@ -144,8 +157,8 @@ namespace AILab1
             UpdateConflict(id);
             foreach (var i in aList)
                 UpdateConflict(i);
-
-            return rand.Next(totalConflict) < M * _vertexConflict[iMaxConflict] ? iMaxConflict : _vertexConflict[aList[rand.Next(aList.Count)]];
+            var newId = rand.Next(totalConflict) < M * _vertexConflict[iMaxConflict] ? iMaxConflict : aList[rand.Next(aList.Count)];
+            return newId;
         }
 
         
